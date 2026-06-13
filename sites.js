@@ -77,6 +77,9 @@ const DEFAULT_SITES = [
   '888bingo.com',
   'meccabingo.com',
   'winkbingo.com',
+
+  // User additions
+  'goldenbet.com',
 ];
 
 function isGamblingSite(hostname, disabledDefaults, customSites) {
