@@ -66,12 +66,15 @@ function injectOverlay() {
 
   btn.addEventListener('click', () => {
     clearInterval(interval);
+    sessionStorage.setItem('__gambling_blocker_dismissed__', '1');
     container.remove();
   });
 }
 
 chrome.storage.sync.get({ disabledDefaults: [], customSites: [] }, data => {
   if (isGamblingSite(window.location.hostname, data.disabledDefaults, data.customSites)) {
-    injectOverlay();
+    if (!sessionStorage.getItem('__gambling_blocker_dismissed__')) {
+      injectOverlay();
+    }
   }
 });
