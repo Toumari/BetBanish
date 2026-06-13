@@ -13,9 +13,9 @@ function buildTableRows() {
     const { week, month, year } = calculateLosses(amount);
     return `<tr>
       <td>£${amount}</td>
-      <td>£${week.toLocaleString()}</td>
-      <td>£${month.toLocaleString()}</td>
-      <td>£${year.toLocaleString()}</td>
+      <td>£${week.toLocaleString('en-GB')}</td>
+      <td>£${month.toLocaleString('en-GB')}</td>
+      <td>£${year.toLocaleString('en-GB')}</td>
     </tr>`;
   }).join('');
 }
@@ -50,7 +50,7 @@ function injectOverlay() {
   document.body.appendChild(container);
 
   let seconds = 10;
-  const btn = document.getElementById('gambling-blocker-btn');
+  const btn = container.querySelector('#gambling-blocker-btn');
 
   const interval = setInterval(() => {
     seconds--;
@@ -63,7 +63,10 @@ function injectOverlay() {
     }
   }, 1000);
 
-  btn.addEventListener('click', () => container.remove());
+  btn.addEventListener('click', () => {
+    clearInterval(interval);
+    container.remove();
+  });
 }
 
 chrome.storage.sync.get({ disabledDefaults: [], customSites: [] }, data => {
