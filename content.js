@@ -21,6 +21,7 @@ function buildTableRows() {
 }
 
 function injectOverlay() {
+  if (document.getElementById('gambling-blocker-overlay')) return;
   const container = document.createElement('div');
   container.id = 'gambling-blocker-overlay';
 

@@ -34,14 +34,15 @@ function renderCustomSites(customSites) {
   container.innerHTML = customSites.map(site => `
     <div class="site-row">
       <span style="font-size:0.95rem">${escapeHtml(site)}</span>
-      <button class="remove-btn" data-site="${escapeHtml(site)}" title="Remove">✕</button>
+      <button class="remove-btn" title="Remove">✕</button>
     </div>
   `).join('');
 
-  container.querySelectorAll('.remove-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+  const buttons = container.querySelectorAll('.remove-btn');
+  customSites.forEach((site, i) => {
+    buttons[i].addEventListener('click', () => {
       chrome.storage.sync.get({ customSites: [] }, data => {
-        const updated = data.customSites.filter(s => s !== btn.dataset.site);
+        const updated = data.customSites.filter(s => s !== site);
         chrome.storage.sync.set({ customSites: updated }, () => renderCustomSites(updated));
       });
     });
@@ -55,6 +56,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
     .replace(/\/.*/, '')
     .replace(/^www\./, '');
   if (!site) return;
+  if (!/^[a-zA-Z0-9][a-zA-Z0-9\-.]+\.[a-zA-Z]{2,}$/.test(site)) return;
   chrome.storage.sync.get({ customSites: [] }, data => {
     if (data.customSites.includes(site)) return;
     const updated = [...data.customSites, site];
