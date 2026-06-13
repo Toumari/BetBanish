@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Gambling Blocker",
+  "version": "1.0",
+  "description": "Shows a loss calculator popup when you visit gambling sites.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["sites.js", "content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html"
+}
