@@ -1,10 +1,14 @@
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 function renderDefaultSites(disabledDefaults) {
   const container = document.getElementById('default-sites');
   container.innerHTML = DEFAULT_SITES.map(site => `
     <div class="site-row">
       <label>
-        <input type="checkbox" data-site="${site}" ${disabledDefaults.includes(site) ? '' : 'checked'}>
-        ${site}
+        <input type="checkbox" data-site="${escapeHtml(site)}" ${disabledDefaults.includes(site) ? '' : 'checked'}>
+        ${escapeHtml(site)}
       </label>
     </div>
   `).join('');
@@ -29,8 +33,8 @@ function renderCustomSites(customSites) {
   const container = document.getElementById('custom-sites');
   container.innerHTML = customSites.map(site => `
     <div class="site-row">
-      <span style="font-size:0.95rem">${site}</span>
-      <button class="remove-btn" data-site="${site}" title="Remove">✕</button>
+      <span style="font-size:0.95rem">${escapeHtml(site)}</span>
+      <button class="remove-btn" data-site="${escapeHtml(site)}" title="Remove">✕</button>
     </div>
   `).join('');
 
