@@ -27,6 +27,7 @@ function injectOverlay() {
 
   container.innerHTML = `
     <div id="gambling-blocker-card">
+      <span id="gambling-blocker-eyebrow">Pause</span>
       <h2>Before you gamble, consider this.</h2>
       <table>
         <thead>
