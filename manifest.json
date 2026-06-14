@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Gambling Blocker",
+  "name": "BetBanish",
   "version": "1.0",
-  "description": "Shows a loss calculator popup when you visit gambling sites.",
+  "description": "A 10-second pause and loss calculator on 65+ UK betting sites. Stop and think before you gamble.",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [

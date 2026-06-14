@@ -1,14 +1,14 @@
-# Chrome Web Store Listing — Gambling Blocker
+# Chrome Web Store Listing — BetBanish
 
 ## Name
-Gambling Blocker
+BetBanish
 
 ## Short description (132 chars max)
 Shows you exactly what you'll lose before you gamble. A 10-second pause and loss calculator on 65+ UK betting sites.
 
 ## Full description
 
-Gambling Blocker is a free tool to help you stop and think before you gamble.
+BetBanish is a free tool to help you stop and think before you gamble.
 
 Every time you visit a gambling website, a full-screen popup appears showing you a simple table: if you bet £1, £2, £5, £10, £25, or £50 every day — here's what it costs you per week, month, and year. That's it. No lectures. Just the numbers.
 
@@ -35,7 +35,7 @@ Lifestyle (or: Productivity)
 English (United Kingdom)
 
 ## Privacy policy URL
-[Your GitHub Pages URL here — e.g. https://yourusername.github.io/gambling-blocker/privacy.html]
+https://toumari.github.io/BetBanish/privacy.html
 
 ---
 
