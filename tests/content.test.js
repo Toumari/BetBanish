@@ -24,3 +24,7 @@ test('buildTableRows returns 6 table rows (one per preset amount)', () => {
   const rows = buildTableRows();
   expect((rows.match(/<tr>/g) || []).length).toBe(6);
 });
+
+test('buildTableRows formats yearly figure for £50/day with thousands separator', () => {
+  expect(buildTableRows()).toContain('£18,250');
+});
