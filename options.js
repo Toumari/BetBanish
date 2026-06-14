@@ -2,11 +2,13 @@ function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+let feedbackTimer = null;
 function showFeedback(message) {
   const el = document.getElementById('feedback');
   if (!el) return;
+  clearTimeout(feedbackTimer);
   el.textContent = message;
-  setTimeout(() => { el.textContent = ''; }, 2500);
+  feedbackTimer = setTimeout(() => { el.textContent = ''; }, 2500);
 }
 
 function renderDefaultSites(disabledDefaults) {
