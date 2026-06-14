@@ -4,79 +4,115 @@
   <meta charset="UTF-8">
   <title>Gambling Blocker — Settings</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       max-width: 480px;
-      margin: 40px auto;
-      padding: 0 20px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
       color: #111;
+      background: #f7f7f7;
     }
-    h1 { font-size: 1.2rem; margin-bottom: 24px; }
+    h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0 0 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 20px 4px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      margin-bottom: 16px;
+    }
     h2 {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #888;
-      margin: 28px 0 8px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      margin: 0 0 4px;
+      font-weight: 600;
     }
     .site-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
     }
+    .site-row:last-child { border-bottom: none; }
     .site-row label {
       display: flex;
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
     .remove-btn {
       background: none;
       border: none;
-      color: #bbb;
+      color: #ccc;
       cursor: pointer;
       font-size: 1rem;
+      padding: 0 2px;
       line-height: 1;
-      padding: 0;
+      transition: color 0.15s;
     }
     .remove-btn:hover { color: #c00; }
     .add-row {
       display: flex;
       gap: 8px;
-      margin-top: 12px;
+      padding: 16px 0 8px;
     }
     .add-row input {
       flex: 1;
-      padding: 8px 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: 9px 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
       font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
     }
+    .add-row input:focus { border-color: #111; }
     .add-row button {
-      padding: 8px 16px;
+      padding: 9px 18px;
       background: #111;
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 0.9rem;
+      font-weight: 500;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .add-row button:hover { background: #333; }
+    #feedback {
+      font-size: 0.8rem;
+      color: #2a7c45;
+      min-height: 1.4em;
+      padding-bottom: 16px;
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <h1>Gambling Blocker — Settings</h1>
+  <h1>Gambling Blocker</h1>
 
-  <h2>Blocked Sites</h2>
-  <div id="default-sites"></div>
+  <div class="card">
+    <h2>Blocked Sites</h2>
+    <div id="default-sites"></div>
+  </div>
 
-  <h2>Your Custom Sites</h2>
-  <div id="custom-sites"></div>
-  <div class="add-row">
-    <input id="new-site" type="text" placeholder="e.g. mybookies.com">
-    <button id="add-btn">+ Add</button>
+  <div class="card">
+    <h2>Your Custom Sites</h2>
+    <div id="custom-sites"></div>
+    <div class="add-row">
+      <input id="new-site" type="text" placeholder="e.g. mybookies.com">
+      <button id="add-btn">Add</button>
+    </div>
+    <p id="feedback"></p>
   </div>
 
   <script src="sites.js"></script>
