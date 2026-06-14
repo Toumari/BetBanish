@@ -71,10 +71,14 @@ function injectOverlay() {
   });
 }
 
-chrome.storage.sync.get({ disabledDefaults: [], customSites: [] }, data => {
-  if (isGamblingSite(window.location.hostname, data.disabledDefaults, data.customSites)) {
-    if (!sessionStorage.getItem('__gambling_blocker_dismissed__')) {
-      injectOverlay();
+if (typeof chrome !== 'undefined') {
+  chrome.storage.sync.get({ disabledDefaults: [], customSites: [] }, data => {
+    if (isGamblingSite(window.location.hostname, data.disabledDefaults, data.customSites)) {
+      if (!sessionStorage.getItem('__gambling_blocker_dismissed__')) {
+        injectOverlay();
+      }
     }
-  }
-});
+  });
+}
+
+if (typeof module !== 'undefined') module.exports = { calculateLosses, buildTableRows };
