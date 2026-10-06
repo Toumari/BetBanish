@@ -1,84 +1,27 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    width: 100vw;
-    height: 100vh;
-    background: #111;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    display: flex;
-    align-items: center;
-    padding: 0 32px;
-    gap: 24px;
-  }
-  .icon-circle {
-    flex-shrink: 0;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: #1c1c1c;
-    border: 2px solid #2a2a2a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 86px;
-    color: #c00;
-    line-height: 1;
-  }
-  .text {
-    flex: 1;
-    min-width: 0;
-  }
-  .name {
-    font-size: 36px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .name span { color: #c00; }
-  .tagline {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 22px;
-    font-weight: 400;
-  }
-  .features {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-  }
-  .feature {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 13px;
-    color: #bbb;
-  }
-  .feature::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #c00;
-    flex-shrink: 0;
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BetBanish promotional tile</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { width: 440px; height: 280px; margin: 0; overflow: hidden; background: oklch(22% 0.009 25); color: oklch(97% 0.006 65); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    main { height: 100%; padding: 30px 32px; position: relative; }
+    header { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 750; letter-spacing: -0.8px; }
+    header img { width: 34px; height: 34px; }
+    h1 { font-size: 37px; line-height: 1.08; letter-spacing: -1.2px; margin: 32px 0 0; font-weight: 700; max-width: 310px; }
+    .pause { position: absolute; right: 34px; bottom: 35px; display: flex; gap: 9px; }
+    .pause i { display: block; width: 10px; height: 41px; border-radius: 3px; background: oklch(60% 0.21 27); }
+    p { margin: 18px 0 0; font-size: 13px; color: oklch(78% 0.008 65); }
+  </style>
 </head>
 <body>
-  <div class="icon-circle">£</div>
-  <div class="text">
-    <div class="name">Bet<span>Banish</span></div>
-    <div class="tagline">Stop and think before you gamble.</div>
-    <div class="features">
-      <div class="feature">10-second pause on every visit</div>
-      <div class="feature">See exactly what you'll lose</div>
-      <div class="feature">65+ UK betting sites covered</div>
-    </div>
-  </div>
+  <main>
+    <header><img src="icons/icon48.png" alt="">BetBanish</header>
+    <h1>A moment<br>to choose.</h1>
+    <p>Pause before you gamble.</p>
+    <div class="pause" aria-hidden="true"><i></i><i></i></div>
+  </main>
 </body>
 </html>

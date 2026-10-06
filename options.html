@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BetBanish — Settings</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -29,7 +30,7 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #aaa;
+      color: #666;
       margin: 0 0 4px;
       font-weight: 600;
     }
@@ -95,13 +96,42 @@
       padding-bottom: 16px;
       margin: 0;
     }
+    .reminder-card { padding-bottom: 20px; }
+    .reminder-card h2 { margin-bottom: 12px; }
+    .reminder-card label { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .hint { font-size: 0.8rem; line-height: 1.5; color: oklch(45% 0.008 65); margin: 8px 0 14px; }
+    textarea {
+      width: 100%; min-height: 90px; resize: vertical; border: 1px solid oklch(75% 0.008 65);
+      border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 0.9rem; line-height: 1.5;
+      background: oklch(99% 0.005 65); color: oklch(24% 0.008 65);
+    }
+    #save-reminder {
+      padding: 10px 16px; border: 1px solid oklch(24% 0.008 65); border-radius: 8px;
+      background: oklch(24% 0.008 65); color: oklch(99% 0.005 65); font: inherit; font-size: 0.9rem;
+      cursor: pointer;
+    }
+    #save-reminder:hover { background: oklch(34% 0.008 65); }
+    button:disabled { cursor: wait; opacity: 0.65; }
+    :focus-visible { outline: 3px solid oklch(52% 0.14 250); outline-offset: 3px; }
+    .add-row input { min-width: 0; }
+    #reminder-feedback { font-size: 0.8rem; line-height: 1.5; min-height: 1.5em; margin: 10px 0 0; }
+    [data-error="true"] { color: oklch(45% 0.16 25) !important; }
   </style>
 </head>
 <body>
   <h1>BetBanish</h1>
 
+  <form id="reminder-form" class="card reminder-card">
+    <h2>Your personal reminder</h2>
+    <label for="personal-reminder">What would you like to remember when you pause?</label>
+    <textarea id="personal-reminder" maxlength="160" placeholder="e.g. I'm saving for a holiday." aria-describedby="reminder-hint" disabled></textarea>
+    <p id="reminder-hint" class="hint">Up to 160 characters. Saved on this device and shown on your pause screen. Leave blank and save to remove it.</p>
+    <button id="save-reminder" type="submit" disabled>Save reminder</button>
+    <p id="reminder-feedback" role="status"></p>
+  </form>
+
   <div class="card">
-    <h2>Blocked Sites</h2>
+    <h2>Sites with a pause</h2>
     <div id="default-sites"></div>
   </div>
 
@@ -109,10 +139,10 @@
     <h2>Your Custom Sites</h2>
     <div id="custom-sites"></div>
     <div class="add-row">
-      <input id="new-site" type="text" placeholder="e.g. mybookies.com">
+      <input id="new-site" type="text" placeholder="e.g. mybookies.com" aria-label="Website address" autocomplete="off" spellcheck="false" aria-describedby="feedback">
       <button id="add-btn">Add</button>
     </div>
-    <p id="feedback"></p>
+    <p id="feedback" role="status"></p>
   </div>
 
   <script src="sites.js"></script>

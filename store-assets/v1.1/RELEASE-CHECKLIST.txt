@@ -1,0 +1,153 @@
+BETBANISH 1.1: CHROME WEB STORE UPDATE
+Prepared 7 October 2026
+
+Use the existing BetBanish item. A new listing, OAuth setup, API key,
+backend, billing configuration, or developer-account registration is not
+needed for these changes. The manifest version is already 1.1.
+
+WHAT IS UNCHANGED
+
+Both v1.0 and v1.1 request only:
+  permissions: storage
+  host_permissions: <all_urls>
+
+The popup and background service worker do not add permission requests.
+The tab URL is available through the existing host permissions. Navigating
+the requesting tab does not require a new tabs permission. No additional
+permission acceptance prompt is expected from this update.
+
+BEFORE SUBMITTING
+
+1. Complete an installed-extension smoke test.
+   The implementation has 69 passing automated tests. The screenshots were
+   rendered from the shipped UI with sample Chrome API responses. They do
+   not establish that the installed extension has passed end-to-end testing.
+   The isolated Chrome test executable failed to launch on this machine.
+
+   Safe manual flow: load the unpacked v1.1 folder in Chrome, save a reminder,
+   add example.com in Settings, and visit it in a fresh tab. Confirm the
+   reminder appears, Leave this site opens New Tab immediately, and Continue
+   only becomes available after 10 seconds. Check the toolbar popup and
+   confirm a previously disabled site remains disabled.
+
+2. Check the published privacy policy at the existing public location:
+   https://toumari.github.io/BetBanish/privacy.html
+
+   The repository's GitHub Pages deployment follows the master branch.
+   After pushing privacy.html and completing that deployment, check that
+   the public URL shows 7 October 2026 and the personal reminder section.
+   Putting privacy.html in the extension ZIP alone does not update this page.
+   The existing policy URL can remain unchanged.
+
+3. Open the existing item in the Chrome Web Store Developer Dashboard.
+   In Package, upload betbanish-v1.1.zip from the repository root.
+   Update the description from store-listing.md and upload the images below.
+
+4. Review and update Privacy practices.
+   Google's User Data FAQ explicitly requires disclosure even when data is
+   processed or stored only on the user's device. Local storage is not a
+   reason to select an unqualified "no user data handled" declaration.
+
+   Actual handling in this build:
+   - Current website hostnames; the current tab URL when opening the popup.
+     These are used to decide whether to show a pause or offer quick add.
+     A browsing-history log is not retained.
+   - Site preferences and manually added hostnames, saved in Chrome Sync.
+     Chrome may sync those settings through the user's Google account.
+   - Optional user-written reminder text, kept in chrome.storage.local.
+     It is not synced or sent to the developer. It appears in the page's
+     overlay; this is disclosed in the privacy policy.
+   - A per-tab dismissal flag in the website's session storage.
+   - No analytics, advertising, accounts, payments, or developer servers.
+
+   Dashboard category mapping to review against the live field descriptions:
+   - Web history: the domains/URLs read for the pause and popup features.
+   - Website content / user-generated text: the optional written reminder.
+     The precise category mapping is an implementation-based recommendation,
+     not a category ruling supplied by Google. Check the current form wording.
+   - Do not claim a full browsing-history log is stored, or that data is sent
+     to the developer. Do not select unrelated categories merely because a
+     user could type an arbitrary sensitive detail into a text field.
+
+   I have not inspected or changed the actual developer-dashboard selections.
+
+COPY-READY PRIVACY FIELD TEXT
+
+Single purpose:
+BetBanish helps people pause and reconsider before visiting gambling sites.
+It shows a 10-second pause with spending projections, an optional personal
+reminder, and an immediate choice to leave. Users can choose the covered sites.
+
+Storage permission justification:
+Stores the user's chosen site list and disabled defaults in chrome.storage.sync
+so Chrome can preserve those choices across their synced browsers. Stores the
+optional personal reminder in chrome.storage.local on this device only. These
+settings are required to show the user's chosen pause experience. No usage
+analytics or browsing-history log is stored.
+
+Host permission justification:
+Users can add any supported website domain to their pause list. The content
+script checks the current hostname locally and shows an overlay only when it
+matches that list. The toolbar popup reads the current tab URL to show coverage
+and allow the user to add that site's hostname. Paths and queries are not saved.
+The extension does not scrape page contents or transmit browsing activity to
+the developer. Broad host matching supports the user-configurable site list.
+
+Remote code:
+No. All extension JavaScript is included in the uploaded package. The new
+background worker is packaged code, not remote code. Support links are normal
+outbound links; they do not load scripts into the extension.
+
+Data-use explanation:
+BetBanish uses website addresses, site preferences, and optional reminder text
+only to provide the pause, coverage, and reminder features. No user data is
+sent to the developer. Site preferences can sync through Chrome Sync; reminder
+text stays on this device. There is no advertising, sale of data, activity
+analytics, or use of data for credit or lending decisions.
+
+Reviewer testing instructions:
+Open Settings, enter a short personal reminder, and add example.com. Open
+https://example.com in a fresh tab to see the pause without visiting a gambling
+website. Leave this site opens Chrome's New Tab page immediately. Continue
+anyway becomes available after 10 seconds. Open the toolbar popup on a normal
+website to inspect coverage or add that hostname. No login or payment is needed.
+
+LISTING IMAGES
+
+Upload these in screenshot slots, in order:
+  01-pause-screen.jpg       1280 x 800
+  02-toolbar-popup.jpg      1280 x 800
+  03-reminder-settings.jpg  1280 x 800
+
+Upload in the small promotional image slot:
+  04-promo-tile.jpg           440 x 280
+
+overview.jpg is a contact sheet for your review; do not upload it as a store
+screenshot. The original promo-tile.png is an older asset; use the new tile.
+
+SUBMISSION
+
+Keep the existing visibility, countries, pricing and distribution settings
+unless you intend to change them. Save the updated listing and declarations,
+then submit this existing item for review. An update goes through a new review;
+uploading the ZIP alone does not immediately replace the live version.
+
+Publishing the repository and privacy page does not update the Chrome Web
+Store. The developer dashboard and store listing still need the steps above.
+
+OFFICIAL REFERENCES (checked 7 October 2026)
+
+Update workflow:
+https://developer.chrome.com/docs/webstore/update
+
+Privacy fields:
+https://developer.chrome.com/docs/webstore/cws-dashboard-privacy
+
+Local data handling and privacy policies (questions 3 and 14):
+https://developer.chrome.com/docs/webstore/program-policies/user-data-faq
+
+Image dimensions:
+https://developer.chrome.com/docs/webstore/images
+
+Tabs API permissions:
+https://developer.chrome.com/docs/extensions/reference/api/tabs

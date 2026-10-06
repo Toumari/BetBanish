@@ -4,23 +4,26 @@
 BetBanish
 
 ## Short description (132 chars max)
-Shows you exactly what you'll lose before you gamble. A 10-second pause and loss calculator on 65+ UK betting sites.
+A personal reminder, a 10-second pause, and a choice to leave on 65+ UK betting sites. Stop and think before you gamble.
 
 ## Full description
 
 BetBanish is a free tool to help you stop and think before you gamble.
 
-Every time you visit a gambling website, a full-screen popup appears showing you a simple table: if you bet £1, £2, £5, £10, £25, or £50 every day — here's what it costs you per week, month, and year. That's it. No lectures. Just the numbers.
+When you visit a covered gambling website, a full-screen pause shows what spending £1, £2, £5, £10, £25, or £50 every day adds up to per week, month, and year. These are spending projections, not a prediction of losses.
 
-After 10 seconds, you can choose to continue to the site. The choice is always yours.
+Leave the site immediately with one button, or choose to continue after 10 seconds. Add a personal reminder in Settings to keep your own reason to pause in view. The choice is always yours.
 
 **Features:**
-• Loss calculator covering daily, weekly, monthly, and yearly spend
+• Spending projections covering daily, weekly, monthly, and yearly spend
+• Leave this site immediately, even during the countdown
+• Personal reminder saved only on your device
+• Toolbar popup with current-site coverage and a quick Add this site action
 • 65+ UK gambling sites blocked by default (Bet365, William Hill, Paddy Power, Ladbrokes, Betfair, Coral, Sky Bet, Betfred, and many more)
 • 10-second countdown before you can proceed — enough time to reconsider
 • Add your own sites in Settings
 • Toggle individual sites on or off
-• No accounts, no tracking, no data collection
+• No accounts or activity analytics; no user data is sent to the developer
 
 **If you need help:**
 GamCare helpline: 0808 8020 133 (free, 24/7)
@@ -43,13 +46,18 @@ https://toumari.github.io/BetBanish/privacy.html
 
 **Why does this extension need access to all websites?**
 
-This extension needs to run on all pages because the list of blocked gambling sites is user-configurable — users can add any hostname they choose in the extension's Settings page. Because we cannot know in advance which custom sites a user will add, we cannot restrict the content script to a fixed list of URL patterns in the manifest. Instead, the content script reads the current page's hostname, compares it against the user's configured list stored in chrome.storage.sync, and only shows the popup if there is a match. No page content, URLs, or browsing history is ever recorded or transmitted.
+This extension runs on regular websites because users can choose which domains show a pause. Its content script compares the current hostname against settings in chrome.storage.sync and shows the overlay when it matches. The toolbar popup reads the current tab's URL to show coverage and let the user add that domain. Only explicitly configured site hostnames are saved, without paths or queries. The optional reminder is saved in chrome.storage.local and displayed in the overlay. No browsing history or activity analytics are collected. Chrome may sync site settings through the user's Google account; the developer receives no data. The leave action navigates the requesting tab to Chrome's New Tab page. No additional permissions are requested by this update.
 
 ---
 
-## Screenshots needed (take these yourself)
+## Listing images for v1.1
 
-1. **The overlay** — Visit one of the blocked sites, screenshot the popup at full size (1280×800)
-2. **The options page** — Screenshot of chrome://extensions options page showing the site list (1280×800)
+Upload these from `store-assets/v1.1/`, in this order:
 
-Tip: Use Chrome DevTools → Ctrl+Shift+P → "Capture full size screenshot" for clean results.
+1. `01-pause-screen.jpg` (1280×800): personal reminder, spending projections, countdown and leave action.
+2. `02-toolbar-popup.jpg` (1280×800): current-site coverage and quick add.
+3. `03-reminder-settings.jpg` (1280×800): reminder editor and site controls.
+
+Replace the small promotional tile with `04-promo-tile.jpg` (440×280).
+
+These images render the shipped UI with example data and descriptive captions. The rendering helper is development-only and is excluded from the extension ZIP. See `store-assets/v1.1/RELEASE-CHECKLIST.txt` for dashboard declarations and submission steps.

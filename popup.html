@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BetBanish</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header><img src="icons/icon48.png" alt="" width="28" height="28"><h1>BetBanish</h1></header>
+  <main>
+    <p class="eyebrow">This website</p>
+    <h2 id="site-name">Checking this tab…</h2>
+    <p id="site-status" role="status">Reading your site settings.</p>
+    <button id="add-site" type="button" hidden>Add this site</button>
+    <p id="site-detail" class="detail"></p>
+    <p id="feedback" role="status" hidden></p>
+    <section aria-labelledby="reminder-title">
+      <h3 id="reminder-title">Make the pause personal</h3>
+      <p id="reminder-status">Add your own reason to pause in Settings.</p>
+      <button id="open-settings" type="button" class="secondary">Open settings</button>
+    </section>
+  </main>
+  <footer>No accounts. No activity tracking.</footer>
+  <script src="sites.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
