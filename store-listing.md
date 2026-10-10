@@ -45,6 +45,10 @@ https://toumari.github.io/BetBanish/privacy.html
 
 ## Permission justification (for Google's review form)
 
+**Storage permission justification (v1.2):**
+
+Stores site preferences, manually added domains, and the chosen currency using chrome.storage.sync, which Chrome may sync through the user's Google account. Stores the optional personal reminder using chrome.storage.local on this device only. Automatic currency suggestions use browser language settings locally, without a location or IP lookup. No browsing-history log or usage analytics are stored.
+
 **Why does this extension need access to all websites?**
 
 This extension runs on regular websites because users can choose which domains show a pause. Its content script compares the current hostname against settings in chrome.storage.sync and shows the overlay when it matches. The toolbar popup reads the current tab's URL to show coverage and let the user add that domain. Only explicitly configured site hostnames are saved, without paths or queries. The optional reminder is saved in chrome.storage.local and displayed in the overlay. No browsing history or activity analytics are collected. Chrome may sync site settings through the user's Google account; the developer receives no data. The leave action navigates the requesting tab to Chrome's New Tab page. No additional permissions are requested by this update.
