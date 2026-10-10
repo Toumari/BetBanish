@@ -139,3 +139,60 @@ document.getElementById('reminder-form').addEventListener('submit', async event 
     reminderButton.disabled = false;
   }
 });
+
+const currencyInput = document.getElementById('currency');
+const currencyButton = document.getElementById('save-currency');
+const currencyFeedback = document.getElementById('currency-feedback');
+const suggestedCurrency = BetBanishCurrency.suggest();
+const currencyNames = typeof Intl.DisplayNames === 'function'
+  ? new Intl.DisplayNames(['en'], { type: 'currency' }) : null;
+
+currencyInput.add(new Option(`Automatic (${suggestedCurrency.currency})`, 'auto'));
+BetBanishCurrency.supported.forEach(code => {
+  currencyInput.add(new Option(currencyNames ? `${code}: ${currencyNames.of(code)}` : code, code));
+});
+
+function previewCurrency() {
+  const currency = BetBanishCurrency.resolve(currencyInput.value);
+  const money = BetBanishCurrency.formatter(currency);
+  document.getElementById('currency-detection').textContent = currencyInput.value === 'auto'
+    ? suggestedCurrency.language
+      ? `Suggested from your browser language (${suggestedCurrency.language}). Choose another currency if needed.`
+      : 'No matching regional language setting found. Automatic uses GBP. You can choose a currency from the list.'
+    : 'Your choice takes priority over the browser suggestion.';
+  document.getElementById('currency-preview').textContent = `Example (${currency}): ${money.format(10)} a day adds up to ${money.format(3650)} a year.`;
+}
+
+chrome.storage.sync.get({ currency: 'auto' }).then(data => {
+  currencyInput.value = BetBanishCurrency.normalize(data.currency);
+  previewCurrency();
+  currencyInput.disabled = false;
+  currencyButton.disabled = false;
+}).catch(() => {
+  currencyFeedback.textContent = 'Could not load your currency. Reopen Settings to try again.';
+  currencyFeedback.dataset.error = 'true';
+});
+
+currencyInput.addEventListener('change', () => {
+  previewCurrency();
+  currencyFeedback.textContent = 'Save to use this currency on your next pause.';
+  currencyFeedback.dataset.error = 'false';
+});
+
+document.getElementById('currency-form').addEventListener('submit', async event => {
+  event.preventDefault();
+  if (currencyButton.disabled) return;
+  currencyButton.disabled = true;
+  currencyInput.disabled = true;
+  try {
+    await chrome.storage.sync.set({ currency: BetBanishCurrency.normalize(currencyInput.value) });
+    currencyFeedback.textContent = 'Saved for your next pause.';
+    currencyFeedback.dataset.error = 'false';
+  } catch {
+    currencyFeedback.textContent = 'Could not save your currency. Please try again.';
+    currencyFeedback.dataset.error = 'true';
+  } finally {
+    currencyInput.disabled = false;
+    currencyButton.disabled = false;
+  }
+});

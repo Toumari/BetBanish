@@ -10,12 +10,13 @@ A personal reminder, a 10-second pause, and a choice to leave on 65+ UK betting 
 
 BetBanish is a free tool to help you stop and think before you gamble.
 
-When you visit a covered gambling website, a full-screen pause shows what spending £1, £2, £5, £10, £25, or £50 every day adds up to per week, month, and year. These are spending projections, not a prediction of losses.
+When you visit a covered gambling website, a full-screen pause shows what daily spending adds up to per week, month, and year. Choose your currency in Settings, or use a suggestion based on your browser's regional language settings. These are spending examples in your chosen currency, not exchange-rate conversions or predictions of losses.
 
 Leave the site immediately with one button, or choose to continue after 10 seconds. Add a personal reminder in Settings to keep your own reason to pause in view. The choice is always yours.
 
 **Features:**
 • Spending projections covering daily, weekly, monthly, and yearly spend
+• Choose your currency, with an automatic suggestion based on browser language settings
 • Leave this site immediately, even during the countdown
 • Personal reminder saved only on your device
 • Toolbar popup with current-site coverage and a quick Add this site action

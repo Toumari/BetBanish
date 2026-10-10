@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
 const fixture = `<script>
-const sampleSettings = {disabledDefaults: [], customSites: []};
+const sampleSettings = {disabledDefaults: [], customSites: [], currency: new URLSearchParams(location.search).get('currency') || 'GBP'};
 const sampleReminder = {personalReminder: "I'm saving for a holiday."};
 function demoStorage(values) { return {
  get(defaults, callback) { const result = {...defaults, ...values}; if (callback) callback(result); return Promise.resolve(result); },
@@ -64,7 +64,7 @@ function scene(name) {
   </style></head><body class="${name}"><section class="copy"><header><img src="/icons/icon48.png" alt="">BetBanish</header><h1>${entry.headline}</h1><p class="description">${entry.description}</p><p class="note">${entry.note}</p></section><section class="surface">${entry.surface}</section></body></html>`;
 }
 
-const allowed = ['promo-tile.html','options.html','options.js','popup.html','popup.js','popup.css','sites.js','content.js','overlay.css','icons/icon48.png'];
+const allowed = ['promo-tile.html','options.html','options.js','popup.html','popup.js','popup.css','sites.js','currency.js','content.js','overlay.css','icons/icon48.png'];
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://127.0.0.1');
   res.setHeader('Cache-Control', 'no-store');
@@ -81,7 +81,7 @@ const server = http.createServer((req, res) => {
   }
   if (url.pathname === '/ui/overlay') {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    return res.end(`<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="/overlay.css"><title>BetBanish pause</title></head><body style="margin:0;background:oklch(22% .009 25)">${fixture}<script src="/sites.js"></script><script src="/content.js"></script><script>injectOverlay(sampleReminder.personalReminder);</script></body></html>`);
+    return res.end(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/overlay.css"><title>BetBanish pause</title></head><body style="margin:0;background:oklch(22% .009 25)">${fixture}<script src="/sites.js"></script><script src="/currency.js"></script><script src="/content.js"></script><script>injectOverlay(sampleReminder.personalReminder, sampleSettings.currency);</script></body></html>`);
   }
   const relative = url.pathname.replace(/^\/ui\//, '').replace(/^\//, '');
   if (!allowed.includes(relative)) { res.writeHead(404); return res.end(); }

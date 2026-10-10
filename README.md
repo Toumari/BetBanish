@@ -2,7 +2,7 @@
 
 A Chrome extension that makes you stop and think before you gamble.
 
-When you visit a covered gambling site, a full-screen pause shows what spending £1, £2, £5, £10, £25, or £50 every day adds up to per week, month, and year. Leave the site immediately, or choose to continue after 10 seconds. You can also add your own reason to pause.
+When you visit a covered gambling site, a full-screen pause shows what spending 1, 2, 5, 10, 25, or 50 units of your chosen currency every day adds up to per week, month, and year. Leave the site immediately, or choose to continue after 10 seconds. You can also add your own reason to pause.
 
 No accounts or activity analytics. No user data is sent to the developer.
 
@@ -22,6 +22,7 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 ## Features
 
 - Spending projections across daily, weekly, monthly, and yearly spend (not a prediction of losses)
+- Choose your currency in Settings, or use a suggestion from the browser's regional language settings. Currency changes label the spending examples; they do not convert exchange rates.
 - An immediate **Leave this site** action, including during the countdown
 - A personal reminder of up to 160 characters, stored only on your device
 - Toolbar popup showing current-site coverage, **Add this site**, and a Settings shortcut
@@ -80,7 +81,7 @@ Tests cover site matching and normalization, spending calculations, the countdow
 ./build.ps1
 ```
 
-Creates `betbanish-v1.1.zip` in the project folder with only runtime files and extension icons. Tests and development dependencies are excluded.
+Creates `betbanish-v1.2.zip` in the project folder with only runtime files and extension icons. Tests and development dependencies are excluded.
 
 ### Project structure
 
@@ -89,6 +90,7 @@ BetBanish/
 ├── manifest.json        # Chrome MV3 manifest
 ├── background.js        # Leave-site navigation
 ├── content.js           # Overlay injection and loss calculator
+├── currency.js          # Currency suggestions, validation, and formatting
 ├── overlay.css          # Overlay styles
 ├── sites.js             # Default site list and hostname matcher
 ├── options.html         # Settings page
@@ -130,6 +132,8 @@ BetBanish handles website addresses and settings to provide its pause features. 
 
 Your site settings use `chrome.storage.sync`. Chrome may sync them through your Google account when Chrome sync is enabled; they are never sent to the BetBanish developer. Your personal reminder uses `chrome.storage.local` and is not synced. It is displayed in the webpage's pause overlay, so avoid including sensitive details.
 
+The currency preference also uses `chrome.storage.sync`. Automatic suggestions use an explicit region in the browser's preferred languages, such as `en-GB` or `fr-CA`. A language without a region, such as `en`, does not imply a country. If no supported region is found, GBP is used. Browser language settings are processed locally and are not saved or transmitted. There is no location permission, IP lookup, or exchange-rate request.
+
 The extension checks website hostnames inside your browser. The toolbar popup reads the current tab's URL to show coverage. Only sites you explicitly add are saved, as hostnames without paths or queries. No browsing history or activity statistics are collected.
 
 Full policy: https://toumari.github.io/BetBanish/privacy.html
@@ -146,7 +150,8 @@ Full policy: https://toumari.github.io/BetBanish/privacy.html
 
 ## Roadmap
 
-- **v1.1 (this update):** Immediate leave action, personal reminders, toolbar popup, and reliable custom-site input
+- **v1.2 (this update):** Configurable currency with local browser-language suggestions and a live example in Settings
+- **v1.1:** Immediate leave action, personal reminders, toolbar popup, and reliable custom-site input
 - **v2:** Statistics — intercept count, streak tracking, browser action popup
 - **v3:** Scheduling — activate only at certain times or days
 - **v4:** Platform reach — Firefox (AMO), Edge verification

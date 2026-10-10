@@ -96,25 +96,32 @@
       padding-bottom: 16px;
       margin: 0;
     }
-    .reminder-card { padding-bottom: 20px; }
-    .reminder-card h2 { margin-bottom: 12px; }
-    .reminder-card label { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .reminder-card, .currency-card { padding-bottom: 20px; }
+    .reminder-card h2, .currency-card h2 { margin-bottom: 12px; }
+    .reminder-card label, .currency-card label { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
     .hint { font-size: 0.8rem; line-height: 1.5; color: oklch(45% 0.008 65); margin: 8px 0 14px; }
     textarea {
       width: 100%; min-height: 90px; resize: vertical; border: 1px solid oklch(75% 0.008 65);
       border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 0.9rem; line-height: 1.5;
       background: oklch(99% 0.005 65); color: oklch(24% 0.008 65);
     }
-    #save-reminder {
+    #save-reminder, #save-currency {
       padding: 10px 16px; border: 1px solid oklch(24% 0.008 65); border-radius: 8px;
       background: oklch(24% 0.008 65); color: oklch(99% 0.005 65); font: inherit; font-size: 0.9rem;
       cursor: pointer;
     }
-    #save-reminder:hover { background: oklch(34% 0.008 65); }
+    #save-reminder:hover, #save-currency:hover { background: oklch(34% 0.008 65); }
+    #currency {
+      width: 100%; min-height: 44px; padding: 10px; font: inherit; font-size: 0.9rem;
+      border: 1px solid oklch(75% 0.008 65); border-radius: 8px;
+      background: oklch(99% 0.005 65); color: oklch(24% 0.008 65);
+    }
+    #currency:disabled { opacity: 0.65; }
+    #currency-preview { margin: 0 0 16px; font-size: 0.85rem; line-height: 1.5; }
     button:disabled { cursor: wait; opacity: 0.65; }
     :focus-visible { outline: 3px solid oklch(52% 0.14 250); outline-offset: 3px; }
     .add-row input { min-width: 0; }
-    #reminder-feedback { font-size: 0.8rem; line-height: 1.5; min-height: 1.5em; margin: 10px 0 0; }
+    #reminder-feedback, #currency-feedback { font-size: 0.8rem; line-height: 1.5; min-height: 1.5em; margin: 10px 0 0; }
     [data-error="true"] { color: oklch(45% 0.16 25) !important; }
   </style>
 </head>
@@ -128,6 +135,17 @@
     <p id="reminder-hint" class="hint">Up to 160 characters. Saved on this device and shown on your pause screen. Leave blank and save to remove it.</p>
     <button id="save-reminder" type="submit" disabled>Save reminder</button>
     <p id="reminder-feedback" role="status"></p>
+  </form>
+
+  <form id="currency-form" class="card currency-card">
+    <h2>Spending examples</h2>
+    <label for="currency">Currency</label>
+    <select id="currency" aria-describedby="currency-detection currency-hint" disabled></select>
+    <p id="currency-detection" class="hint"></p>
+    <p id="currency-hint" class="hint">Amounts use your chosen currency, with no exchange-rate conversion. This preference can sync with Chrome.</p>
+    <p id="currency-preview" role="status"></p>
+    <button id="save-currency" type="submit" disabled>Save currency</button>
+    <p id="currency-feedback" role="status"></p>
   </form>
 
   <div class="card">
@@ -146,6 +164,7 @@
   </div>
 
   <script src="sites.js"></script>
+  <script src="currency.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

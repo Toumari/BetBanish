@@ -26,5 +26,19 @@ test('buildTableRows returns 6 table rows (one per preset amount)', () => {
 });
 
 test('buildTableRows formats yearly figure for £50/day with thousands separator', () => {
-  expect(buildTableRows()).toContain('£18,250');
+  expect(buildTableRows('GBP', ['en-GB'])).toContain('£18,250');
+});
+
+test('table uses the selected currency for every amount without currency conversion', () => {
+  const rows = buildTableRows('EUR', ['en-GB']);
+  expect((rows.match(/€/g) || [])).toHaveLength(24);
+  expect(rows).toContain('€18,250');
+  expect(rows).not.toContain('£');
+});
+
+test('table honours regional number formatting and currencies without decimal places', () => {
+  expect(buildTableRows('EUR', ['de-DE'])).toContain('18.250');
+  const yen = buildTableRows('JPY', ['ja-JP']);
+  expect(yen).toContain('18,250');
+  expect(yen).not.toContain('.00');
 });

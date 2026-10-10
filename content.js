@@ -1,4 +1,5 @@
 const PRESET_AMOUNTS = [1, 2, 5, 10, 25, 50];
+const currencyTools = typeof module !== 'undefined' && module.exports ? require('./currency') : BetBanishCurrency;
 
 function calculateLosses(daily) {
   return {
@@ -8,20 +9,22 @@ function calculateLosses(daily) {
   };
 }
 
-function buildTableRows() {
+function buildTableRows(currency = 'auto', languages) {
+  const money = currencyTools.formatter(currency, languages);
   return PRESET_AMOUNTS.map(amount => {
     const { week, month, year } = calculateLosses(amount);
     return `<tr>
-      <td>£${amount}</td>
-      <td>£${week.toLocaleString('en-GB')}</td>
-      <td>£${month.toLocaleString('en-GB')}</td>
-      <td>£${year.toLocaleString('en-GB')}</td>
+      <td><bdi>${money.format(amount)}</bdi></td>
+      <td><bdi>${money.format(week)}</bdi></td>
+      <td><bdi>${money.format(month)}</bdi></td>
+      <td><bdi>${money.format(year)}</bdi></td>
     </tr>`;
   }).join('');
 }
 
-function injectOverlay(personalReminder = '') {
+function injectOverlay(personalReminder = '', currencyPreference = 'auto') {
   if (document.getElementById('gambling-blocker-overlay')) return;
+  const currency = currencyTools.resolve(currencyPreference);
   const previousFocus = document.activeElement;
   const container = document.createElement('dialog');
   container.id = 'gambling-blocker-overlay';
@@ -38,7 +41,7 @@ function injectOverlay(personalReminder = '') {
         <p></p>
       </div>
       <table>
-        <caption>What daily spending adds up to</caption>
+        <caption>What daily spending adds up to (${currency})</caption>
         <thead>
           <tr>
             <th>Daily spend</th>
@@ -47,7 +50,7 @@ function injectOverlay(personalReminder = '') {
             <th>Year</th>
           </tr>
         </thead>
-        <tbody>${buildTableRows()}</tbody>
+        <tbody>${buildTableRows(currency)}</tbody>
       </table>
       <p id="gambling-blocker-explanation">Spending projections, not a prediction of losses.</p>
       </div>
@@ -127,12 +130,12 @@ function wasDismissed() {
 }
 
 if (typeof chrome !== 'undefined') {
-  chrome.storage.sync.get({ disabledDefaults: [], customSites: [] }, data => {
+  chrome.storage.sync.get({ disabledDefaults: [], customSites: [], currency: 'auto' }, data => {
     if (isGamblingSite(window.location.hostname, data.disabledDefaults, data.customSites)) {
       if (!wasDismissed()) {
         chrome.storage.local.get({ personalReminder: '' }, localData => {
           const reminder = chrome.runtime.lastError ? '' : localData.personalReminder;
-          injectOverlay(reminder);
+          injectOverlay(reminder, data.currency);
         });
       }
     }

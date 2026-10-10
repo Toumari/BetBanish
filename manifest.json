@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "BetBanish",
-  "version": "1.1",
+  "version": "1.2",
   "description": "A personal reminder, a 10-second pause, and a choice to leave on 65+ UK betting sites. Stop and think before you gamble.",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["sites.js", "content.js"],
+      "js": ["sites.js", "currency.js", "content.js"],
       "css": ["overlay.css"],
       "run_at": "document_idle"
     }
