@@ -1,0 +1,10 @@
+:root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+body { margin: 0; min-height: 100dvh; display: grid; place-items: center; background: #262321; color: #f5f2ec; }
+[hidden] { display: none !important; }
+#demo-result { padding: 36px 24px; max-width: 380px; text-align: center; }
+#demo-result h1 { font-size: 1.7rem; line-height: 1.2; }
+#demo-result p { line-height: 1.65; }
+#demo-result .sample-note { color: #c6c0b7; font-size: .85rem; }
+#demo-result button { font: inherit; font-weight: 600; background: #f5f2ec; color: #262321; padding: 14px 22px; border: 0; border-radius: 10px; cursor: pointer; margin-top: 12px; }
+#demo-result :focus-visible { outline: 3px solid #efaba2; outline-offset: 4px; }
+/* Keep the source UI unchanged; only the preview's page background is custom. */

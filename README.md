@@ -56,6 +56,14 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 
 ## Development
 
+### Public website
+
+The landing page is published at [toumari.github.io/BetBanish](https://toumari.github.io/BetBanish/) by the existing GitHub Pages deployment from `master`. Its entry point is `index.html`, with styles, scripts and the upcoming-update preview in `website/`. The privacy policy keeps its existing `privacy.html` URL.
+
+Preview locally with `node tools/preview-site.cjs`, then open `http://127.0.0.1:4181/BetBanish/`. No website build or additional dependencies are required. Website assets are excluded from the extension ZIP by the explicit allowlist in `build.ps1`.
+
+The page currently labels v1.2 features as upcoming because that version has not been submitted to the store. After v1.2 is published, update the hero screenshot caption, feature availability text, privacy summary and currency FAQ together. The interactive preview reuses the real extension overlay with in-memory demo settings and no persistent browsing data.
+
 ### Prerequisites
 
 - Node.js (for running tests)
