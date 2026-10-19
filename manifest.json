@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "BetBanish",
-  "version": "1.2",
+  "name": "Bet Banish – Pause Before You Gamble",
+  "short_name": "Bet Banish",
+  "version": "1.2.1",
   "description": "A personal reminder, a 10-second pause, and a choice to leave on 65+ UK betting sites. Stop and think before you gamble.",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "background": { "service_worker": "background.js" },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "BetBanish"
+    "default_title": "Bet Banish"
   },
   "content_scripts": [
     {

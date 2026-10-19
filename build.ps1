@@ -1,5 +1,5 @@
 # Builds a distributable ZIP of the extension (no dev files)
-$out = Join-Path $PSScriptRoot 'betbanish-v1.2.zip'
+$out = Join-Path $PSScriptRoot 'betbanish-v1.2.1.zip'
 $include = @(
     "manifest.json",
     "sites.js",

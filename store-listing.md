@@ -1,14 +1,14 @@
 # Chrome Web Store Listing — BetBanish
 
 ## Name
-BetBanish
+Bet Banish – Pause Before You Gamble
 
 ## Short description (132 chars max)
 A personal reminder, a 10-second pause, and a choice to leave on 65+ UK betting sites. Stop and think before you gamble.
 
 ## Full description
 
-BetBanish is a free Chrome extension that gives you a moment to reconsider before gambling.
+Bet Banish (BetBanish) is a free Chrome extension that gives you a moment to reconsider before gambling.
 
 When you visit a covered website, a full-screen pause shows what daily spending adds up to over a week, month and year. Choose your currency in Settings, or use an automatic suggestion based on your browser's regional language settings. These are spending examples, not exchange-rate conversions, tracked spending or predictions of losses.
 

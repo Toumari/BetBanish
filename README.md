@@ -38,7 +38,7 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 
 ### From the Chrome Web Store
 
-[Install BetBanish](https://chromewebstore.google.com/detail/betbanish/cmndojlifojfgihdgcjdkcgalcnfhfac). Version 1.1 is published, including personal reminders, the leave action and toolbar popup. Version 1.2 adds currency selection and is uploaded as a draft, but has not yet been submitted for review.
+[Install BetBanish](https://chromewebstore.google.com/detail/betbanish/cmndojlifojfgihdgcjdkcgalcnfhfac). Version 1.1 is published, including personal reminders, the leave action and toolbar popup. Version 1.2.1 adds currency selection and the store title "Bet Banish – Pause Before You Gamble". It replaces the withdrawn v1.2 submission and is prepared for a new store review.
 
 ### Load unpacked (for development or personal use)
 
@@ -62,7 +62,7 @@ The landing page is published at [toumari.github.io/BetBanish](https://toumari.g
 
 Preview locally with `node tools/preview-site.cjs`, then open `http://127.0.0.1:4181/BetBanish/`. No website build or additional dependencies are required. Website assets are excluded from the extension ZIP by the explicit allowlist in `build.ps1`.
 
-The page describes the published v1.1 reminder, leave action and popup as available now. Only currency selection is marked as upcoming because v1.2 has not been submitted to the store. After v1.2 is published, update the currency feature, privacy summary, currency FAQ and release status in this README together. The interactive preview reuses the real extension overlay with in-memory demo settings and no persistent browsing data.
+The page describes the published v1.1 reminder, leave action and popup as available now. Only currency selection is marked as upcoming because the currency update is not published. After v1.2.1 is published, update the currency feature, privacy summary, currency FAQ and release status in this README together. The interactive preview reuses the real extension overlay with in-memory demo settings and no persistent browsing data.
 
 ### Prerequisites
 
@@ -89,7 +89,7 @@ Tests cover site matching and normalization, spending calculations, the countdow
 ./build.ps1
 ```
 
-Creates `betbanish-v1.2.zip` in the project folder with only runtime files and extension icons. Tests and development dependencies are excluded.
+Creates `betbanish-v1.2.1.zip` in the project folder with only runtime files and extension icons. Tests and development dependencies are excluded. Version 1.2.1 uses the store title "Bet Banish – Pause Before You Gamble" and includes both brand spellings in the listing description.
 
 ### Project structure
 
