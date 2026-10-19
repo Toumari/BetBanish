@@ -1,4 +1,4 @@
-# BetBanish
+# Bet Banish
 
 A Chrome extension that makes you stop and think before you gamble.
 
@@ -38,7 +38,7 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 
 ### From the Chrome Web Store
 
-[Install BetBanish](https://chromewebstore.google.com/detail/betbanish/cmndojlifojfgihdgcjdkcgalcnfhfac). Version 1.1 is published, including personal reminders, the leave action and toolbar popup. Version 1.2.1 adds currency selection and the store title "Bet Banish – Pause Before You Gamble". It replaces the withdrawn v1.2 submission and is prepared for a new store review.
+[Install Bet Banish](https://chromewebstore.google.com/detail/betbanish/cmndojlifojfgihdgcjdkcgalcnfhfac). Version 1.1 is published, including personal reminders, the leave action and toolbar popup. Version 1.2.1 adds currency selection and the store title "Bet Banish – Pause Before You Gamble". It replaces the withdrawn v1.2 submission and is pending review, with automatic publication after approval.
 
 ### Load unpacked (for development or personal use)
 
@@ -59,6 +59,8 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 ### Public website
 
 The landing page is published at [toumari.github.io/BetBanish](https://toumari.github.io/BetBanish/) by the existing GitHub Pages deployment from `master`. Its entry point is `index.html`, with styles, scripts and the interactive pause preview in `website/`. The privacy policy keeps its existing `privacy.html` URL.
+
+The website uses the spaced "Bet Banish" brand name. Its link-preview image is `website/share-card.jpg`, rendered from `website/share-card.html` at 1200×630 pixels.
 
 Preview locally with `node tools/preview-site.cjs`, then open `http://127.0.0.1:4181/BetBanish/`. No website build or additional dependencies are required. Website assets are excluded from the extension ZIP by the explicit allowlist in `build.ps1`.
 
