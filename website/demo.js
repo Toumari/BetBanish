@@ -22,7 +22,7 @@ function showResult(choice) {
     ? 'A fresh start in a new tab.'
     : 'The choice stays with you.';
   document.getElementById('result-description').textContent = choice === 'left'
-    ? 'In the upcoming update, “Leave this site” opens Chrome’s New Tab page in the same tab, straight away.'
+    ? 'In the extension, “Leave this site” opens Chrome’s New Tab page in the same tab, straight away.'
     : 'In the extension, continuing dismisses the pause for that website in the same tab session.';
   const result = document.getElementById('demo-result');
   result.hidden = false;

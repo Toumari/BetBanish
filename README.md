@@ -38,7 +38,7 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 
 ### From the Chrome Web Store
 
-[Install BetBanish](https://chromewebstore.google.com/detail/betbanish/cmndojlifojfgihdgcjdkcgalcnfhfac). The changes in this repository need a new store submission before installed users receive them.
+[Install BetBanish](https://chromewebstore.google.com/detail/betbanish/cmndojlifojfgihdgcjdkcgalcnfhfac). Version 1.1 is published, including personal reminders, the leave action and toolbar popup. Version 1.2 adds currency selection and is uploaded as a draft, but has not yet been submitted for review.
 
 ### Load unpacked (for development or personal use)
 
@@ -58,11 +58,11 @@ The goal is friction, not a hard block. A pause is enough to reconsider.
 
 ### Public website
 
-The landing page is published at [toumari.github.io/BetBanish](https://toumari.github.io/BetBanish/) by the existing GitHub Pages deployment from `master`. Its entry point is `index.html`, with styles, scripts and the upcoming-update preview in `website/`. The privacy policy keeps its existing `privacy.html` URL.
+The landing page is published at [toumari.github.io/BetBanish](https://toumari.github.io/BetBanish/) by the existing GitHub Pages deployment from `master`. Its entry point is `index.html`, with styles, scripts and the interactive pause preview in `website/`. The privacy policy keeps its existing `privacy.html` URL.
 
 Preview locally with `node tools/preview-site.cjs`, then open `http://127.0.0.1:4181/BetBanish/`. No website build or additional dependencies are required. Website assets are excluded from the extension ZIP by the explicit allowlist in `build.ps1`.
 
-The page currently labels v1.2 features as upcoming because that version has not been submitted to the store. After v1.2 is published, update the hero screenshot caption, feature availability text, privacy summary and currency FAQ together. The interactive preview reuses the real extension overlay with in-memory demo settings and no persistent browsing data.
+The page describes the published v1.1 reminder, leave action and popup as available now. Only currency selection is marked as upcoming because v1.2 has not been submitted to the store. After v1.2 is published, update the currency feature, privacy summary, currency FAQ and release status in this README together. The interactive preview reuses the real extension overlay with in-memory demo settings and no persistent browsing data.
 
 ### Prerequisites
 
